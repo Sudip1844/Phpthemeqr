@@ -10,6 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { generateQRCode, generateQRCodeSVG, QROptions, createUrlQR, createEmailQR, createPhoneQR, createTextQR, createSMSQR, createWhatsAppQR, createWiFiQR, createVCardQR, createEventQR, createImageQR, createPayPalQR, createEnhancedVCardQR, createZoomQR } from '@/lib/qr-service';
+import { generateEnhancedQRCode, availableDotStyles, availableCornerStyles, availableCornerDotStyles, DotType, CornerSquareType, CornerDotType } from '@/lib/qr-service-enhanced';
 import { Download, Share2, Copy, Check, Loader2, ChevronDown, Link, QrCode, FileText } from 'lucide-react';
 import { WhatsAppIcon, FacebookIcon, InstagramIcon, XIcon, TwitterBirdIcon, LinkedInIcon, YouTubeIcon, PayPalIcon, ZoomIcon, WifiIcon, DownloadIcon, ImageUploadIcon, ImageIcon } from '@/components/CustomIcons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -125,6 +126,14 @@ const QRGenerator = () => {
   const [downloadSize, setDownloadSize] = useState(1000);
   const [downloadFormat, setDownloadFormat] = useState('PNG');
   const [embedDialogOpen, setEmbedDialogOpen] = useState(false);
+
+  // Enhanced QR style options
+  const [useEnhancedMode, setUseEnhancedMode] = useState(false);
+  const [dotStyle, setDotStyle] = useState<DotType>('square');
+  const [cornerSquareStyle, setCornerSquareStyle] = useState<CornerSquareType>('square');
+  const [cornerDotStyle, setCornerDotStyle] = useState<CornerDotType>('square');
+  const [backgroundImage, setBackgroundImage] = useState<string>('');
+  const [backgroundImageOpacity, setBackgroundImageOpacity] = useState(50);
 
 
   // Function to get brand colors for social media logos
@@ -273,7 +282,7 @@ const QRGenerator = () => {
   // Reset QR result when design options change
   useEffect(() => {
     setQrResult(null);
-  }, [selectedLogo, logoSize, logoOpacity, gradient, removeBackground, downloadSize, margin, squareColor, backgroundColor, innerEyeColor, outerEyeColor, errorCorrectionLevel, customLogo, customEmoji]);
+  }, [selectedLogo, logoSize, logoOpacity, gradient, removeBackground, downloadSize, margin, squareColor, backgroundColor, innerEyeColor, outerEyeColor, errorCorrectionLevel, customLogo, customEmoji, useEnhancedMode, dotStyle, cornerSquareStyle, cornerDotStyle, backgroundImage, backgroundImageOpacity]);
 
   // Auto-generation: automatically generate QR code when valid input data changes
   useEffect(() => {
@@ -323,29 +332,57 @@ const QRGenerator = () => {
         setIsGenerating(true);
         try {
           const data = generateData();
-          const options: QROptions = {
-            data,
-            size: downloadSize,
-            margin,
-            color: {
-              dark: squareColor,
-              light: backgroundColor,
-              innerEye: innerEyeColor,
-              outerEye: outerEyeColor
-            },
-            errorCorrectionLevel,
-            design: {
-              logo: selectedLogo === 'custom-logo' && customLogo ? customLogo : 
-                    selectedLogo === 'custom-emoji' && customEmoji ? customEmoji : 
-                    selectedLogo !== 'none' ? selectedLogo : undefined,
-              logoSize,
-              logoOpacity,
-              gradient,
-              removeBackground,
-            }
-          };
+          let qrDataUrl: string;
 
-          const qrDataUrl = await generateQRCode(options);
+          if (useEnhancedMode) {
+            qrDataUrl = await generateEnhancedQRCode({
+              data,
+              size: downloadSize,
+              margin,
+              dotsType: dotStyle,
+              cornerSquareType: cornerSquareStyle,
+              cornerDotType: cornerDotStyle,
+              color: {
+                dark: squareColor,
+                light: backgroundColor,
+                innerEye: innerEyeColor,
+                outerEye: outerEyeColor
+              },
+              backgroundImage: backgroundImage || undefined,
+              backgroundImageOpacity: backgroundImageOpacity / 100,
+              errorCorrectionLevel,
+              design: selectedLogo !== 'none' ? {
+                logo: selectedLogo === 'custom-logo' && customLogo ? customLogo : 
+                      selectedLogo === 'custom-emoji' && customEmoji ? customEmoji : 
+                      selectedLogo,
+                logoSize,
+                logoOpacity,
+              } : undefined
+            });
+          } else {
+            const options: QROptions = {
+              data,
+              size: downloadSize,
+              margin,
+              color: {
+                dark: squareColor,
+                light: backgroundColor,
+                innerEye: innerEyeColor,
+                outerEye: outerEyeColor
+              },
+              errorCorrectionLevel,
+              design: {
+                logo: selectedLogo === 'custom-logo' && customLogo ? customLogo : 
+                      selectedLogo === 'custom-emoji' && customEmoji ? customEmoji : 
+                      selectedLogo !== 'none' ? selectedLogo : undefined,
+                logoSize,
+                logoOpacity,
+                gradient,
+                removeBackground,
+              }
+            };
+            qrDataUrl = await generateQRCode(options);
+          }
           
           // Only update if this is still the latest request
           if (currentToken === generationTokenRef.current) {
@@ -1753,6 +1790,125 @@ const QRGenerator = () => {
 
                     <TabsContent value="shape" className="space-y-6">
                       <div className="space-y-6">
+                        {/* Enhanced Mode Toggle */}
+                        <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border border-purple-200 dark:border-purple-700 rounded-lg p-4">
+                          <div className="flex items-center justify-between mb-3">
+                            <div>
+                              <Label htmlFor="enhanced-mode" className="text-slate-700 font-semibold text-base">🎨 Enhanced Mode</Label>
+                              <p className="text-sm text-gray-600 mt-1">Advanced styling with rounded dots, custom corners & backgrounds</p>
+                            </div>
+                            <Switch
+                              id="enhanced-mode"
+                              checked={useEnhancedMode}
+                              onCheckedChange={setUseEnhancedMode}
+                              data-testid="switch-enhanced-mode"
+                            />
+                          </div>
+
+                          {useEnhancedMode && (
+                            <div className="space-y-4 mt-4 pt-4 border-t border-purple-200 dark:border-purple-700">
+                              {/* Dot Style */}
+                              <div className="space-y-2">
+                                <Label className="text-slate-700 font-medium">Dot Style</Label>
+                                <Select value={dotStyle} onValueChange={(value: DotType) => setDotStyle(value)}>
+                                  <SelectTrigger className="h-12" data-testid="select-dot-style">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {availableDotStyles.map(style => (
+                                      <SelectItem key={style.value} value={style.value}>
+                                        {style.preview} {style.label}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+
+                              {/* Corner Square Style */}
+                              <div className="space-y-2">
+                                <Label className="text-slate-700 font-medium">Corner Square Style</Label>
+                                <Select value={cornerSquareStyle} onValueChange={(value: CornerSquareType) => setCornerSquareStyle(value)}>
+                                  <SelectTrigger className="h-12" data-testid="select-corner-square">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {availableCornerStyles.map(style => (
+                                      <SelectItem key={style.value} value={style.value}>
+                                        {style.preview} {style.label}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+
+                              {/* Corner Dot Style */}
+                              <div className="space-y-2">
+                                <Label className="text-slate-700 font-medium">Corner Dot Style</Label>
+                                <Select value={cornerDotStyle} onValueChange={(value: CornerDotType) => setCornerDotStyle(value)}>
+                                  <SelectTrigger className="h-12" data-testid="select-corner-dot">
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {availableCornerDotStyles.map(style => (
+                                      <SelectItem key={style.value} value={style.value}>
+                                        {style.preview} {style.label}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+
+                              {/* Background Image Upload */}
+                              <div className="space-y-2">
+                                <Label className="text-slate-700 font-medium">Background Image (Optional)</Label>
+                                <Input
+                                  type="file"
+                                  accept="image/*"
+                                  onChange={(e) => {
+                                    const file = e.target.files?.[0];
+                                    if (file) {
+                                      const reader = new FileReader();
+                                      reader.onload = (event) => {
+                                        setBackgroundImage(event.target?.result as string || '');
+                                      };
+                                      reader.readAsDataURL(file);
+                                    }
+                                  }}
+                                  className="cursor-pointer"
+                                  data-testid="input-background-image"
+                                />
+                                {backgroundImage && (
+                                  <div className="relative">
+                                    <img src={backgroundImage} alt="Background preview" className="w-full h-24 object-cover rounded border" />
+                                    <Button
+                                      size="sm"
+                                      variant="destructive"
+                                      className="absolute top-1 right-1"
+                                      onClick={() => setBackgroundImage('')}
+                                      data-testid="button-remove-background"
+                                    >
+                                      Remove
+                                    </Button>
+                                  </div>
+                                )}
+                                {backgroundImage && (
+                                  <div className="space-y-2">
+                                    <Label className="text-slate-700 font-medium text-sm">Background Opacity: {backgroundImageOpacity}%</Label>
+                                    <Slider
+                                      value={[backgroundImageOpacity]}
+                                      onValueChange={(value) => setBackgroundImageOpacity(value[0])}
+                                      max={100}
+                                      min={0}
+                                      step={5}
+                                      className="w-full"
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
                         <div className="space-y-2">
                           <Label className="text-slate-700 font-medium">Margin</Label>
                           <Slider
