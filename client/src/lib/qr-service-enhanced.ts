@@ -62,7 +62,7 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
           mode: 'Byte',
           errorCorrectionLevel: errorCorrectionLevel
         },
-        imageOptions: design?.logo ? {
+        imageOptions: design?.logo && design.logo !== 'none' ? {
           hideBackgroundDots: true,
           imageSize: (design.logoSize || 20) / 100,
           margin: 5,
@@ -85,20 +85,6 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
           type: cornerDotType
         }
       });
-
-      if (backgroundImage && backgroundImage !== 'none') {
-        qrCode.update({
-          backgroundOptions: {
-            color: color.light,
-          },
-          image: backgroundImage,
-          imageOptions: {
-            hideBackgroundDots: false,
-            imageSize: 1.0,
-            margin: 0,
-          }
-        });
-      }
 
       qrCode.getRawData('png').then(data => {
         if (!data) {

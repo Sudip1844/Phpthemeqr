@@ -1858,52 +1858,12 @@ const QRGenerator = () => {
                                 </Select>
                               </div>
 
-                              {/* Background Image Upload */}
-                              <div className="space-y-2">
-                                <Label className="text-slate-700 font-medium">Background Image (Optional)</Label>
-                                <Input
-                                  type="file"
-                                  accept="image/*"
-                                  onChange={(e) => {
-                                    const file = e.target.files?.[0];
-                                    if (file) {
-                                      const reader = new FileReader();
-                                      reader.onload = (event) => {
-                                        setBackgroundImage(event.target?.result as string || '');
-                                      };
-                                      reader.readAsDataURL(file);
-                                    }
-                                  }}
-                                  className="cursor-pointer"
-                                  data-testid="input-background-image"
-                                />
-                                {backgroundImage && (
-                                  <div className="relative">
-                                    <img src={backgroundImage} alt="Background preview" className="w-full h-24 object-cover rounded border" />
-                                    <Button
-                                      size="sm"
-                                      variant="destructive"
-                                      className="absolute top-1 right-1"
-                                      onClick={() => setBackgroundImage('')}
-                                      data-testid="button-remove-background"
-                                    >
-                                      Remove
-                                    </Button>
-                                  </div>
-                                )}
-                                {backgroundImage && (
-                                  <div className="space-y-2">
-                                    <Label className="text-slate-700 font-medium text-sm">Background Opacity: {backgroundImageOpacity}%</Label>
-                                    <Slider
-                                      value={[backgroundImageOpacity]}
-                                      onValueChange={(value) => setBackgroundImageOpacity(value[0])}
-                                      max={100}
-                                      min={0}
-                                      step={5}
-                                      className="w-full"
-                                    />
-                                  </div>
-                                )}
+                              {/* Background Image Upload - Coming Soon */}
+                              <div className="space-y-2 opacity-50 pointer-events-none">
+                                <Label className="text-slate-700 font-medium">Background Image (Coming Soon)</Label>
+                                <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                  <p className="text-sm text-gray-500">Background image blending feature will be added in a future update using Awesome-QR library</p>
+                                </div>
                               </div>
                             </div>
                           )}
