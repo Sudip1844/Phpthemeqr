@@ -1,0 +1,193 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Toast Styles */
+@layer components {
+  .toast-generator {
+    @apply !bg-green-700 !text-white !border-green-800;
+  }
+  
+  .toast-generator [data-description] {
+    @apply !text-white;
+  }
+  
+  .toast-scanner {
+    @apply !bg-purple-600 !text-white !border-purple-700;
+  }
+  
+  .toast-scanner [data-description] {
+    @apply !text-white;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 160 84% 39%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Improved focus indicators for keyboard navigation */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Additional styles for the QR code generator */
+/* Removed global data-state="active" rule to prevent unwanted green backgrounds */
+
+/* Dynamic Neon Title Animation */
+.dynamic-neon-title {
+  background: linear-gradient(45deg, #3B82F6, #EC4899, #10B981, #F59E0B);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: neonGradient 4s ease-in-out infinite;
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+/* Dynamic Header Background Animation - Extended Colors */
+.dynamic-header-bg {
+  background: linear-gradient(135deg, 
+    #ffffff,                       /* White base */
+    #e0f2fe,                      /* Light Blue */
+    #fce4ec,                      /* Light Pink */
+    #e8f5e8,                      /* Light Green */
+    #fff3e0,                      /* Light Orange */
+    #f3e5f5,                      /* Light Purple */
+    #ffebee,                      /* Light Red */
+    #e0f7fa,                      /* Light Cyan */
+    #f1f8e9,                      /* Light Lime */
+    #fff3e0,                      /* Light Orange-Red */
+    #f3e5f5,                      /* Light Violet */
+    #e0f2f1,                      /* Light Teal */
+    #fce4ec                       /* Light Hot Pink */
+  );
+  background-size: 1000% 1000%;
+  animation: headerGradientFlow 12s ease-in-out infinite;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+
+@keyframes neonGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes headerGradientFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  8.33% {
+    background-position: 20% 20%;
+  }
+  16.66% {
+    background-position: 40% 40%;
+  }
+  25% {
+    background-position: 60% 60%;
+  }
+  33.33% {
+    background-position: 80% 80%;
+  }
+  41.66% {
+    background-position: 100% 100%;
+  }
+  50% {
+    background-position: 80% 80%;
+  }
+  58.33% {
+    background-position: 60% 60%;
+  }
+  66.66% {
+    background-position: 40% 40%;
+  }
+  75% {
+    background-position: 20% 20%;
+  }
+  83.33% {
+    background-position: 0% 0%;
+  }
+  91.66% {
+    background-position: 10% 10%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Horizontal scroll utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
