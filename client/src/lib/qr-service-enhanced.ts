@@ -4,6 +4,19 @@ export type DotType = 'rounded' | 'dots' | 'classy' | 'classy-rounded' | 'square
 export type CornerSquareType = 'dot' | 'square' | 'extra-rounded';
 export type CornerDotType = 'dot' | 'square';
 
+// Helper function to check if a string is a valid image URL or data URL
+function isValidImageUrl(url: string): boolean {
+  if (!url) return false;
+  // Check if it's a data URL (base64 encoded image)
+  if (url.startsWith('data:image/')) return true;
+  // Check if it's an HTTP(S) URL
+  if (url.startsWith('http://') || url.startsWith('https://')) return true;
+  // Check if it's a relative path (starts with / or ./)
+  if (url.startsWith('/') || url.startsWith('./')) return true;
+  // Reject identifier strings like 'link', 'facebook', etc.
+  return false;
+}
+
 export interface EnhancedQROptions {
   data: string;
   size?: number;
@@ -62,7 +75,7 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
           mode: 'Byte',
           errorCorrectionLevel: errorCorrectionLevel
         },
-        imageOptions: design?.logo && design.logo !== 'none' ? {
+        imageOptions: design?.logo && design.logo !== 'none' && isValidImageUrl(design.logo) ? {
           hideBackgroundDots: true,
           imageSize: (design.logoSize || 20) / 100,
           margin: 5,
@@ -75,7 +88,7 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
         backgroundOptions: {
           color: color.light,
         },
-        image: design?.logo && design.logo !== 'none' ? design.logo : undefined,
+        image: design?.logo && design.logo !== 'none' && isValidImageUrl(design.logo) ? design.logo : undefined,
         cornersSquareOptions: {
           color: color.outerEye || color.dark,
           type: cornerSquareType
