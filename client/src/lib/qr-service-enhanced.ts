@@ -30,8 +30,6 @@ export interface EnhancedQROptions {
     innerEye?: string;
     outerEye?: string;
   };
-  backgroundImage?: string;
-  backgroundImageOpacity?: number;
   errorCorrectionLevel?: 'L' | 'M' | 'Q' | 'H';
   design?: {
     logo?: string;
@@ -51,8 +49,6 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
     cornerSquareType = 'square',
     cornerDotType = 'square',
     color = { dark: '#000000', light: '#ffffff' },
-    backgroundImage,
-    backgroundImageOpacity = 0.5,
     errorCorrectionLevel = 'M',
     design
   } = options;

@@ -132,8 +132,6 @@ const QRGenerator = () => {
   const [dotStyle, setDotStyle] = useState<DotType>('square');
   const [cornerSquareStyle, setCornerSquareStyle] = useState<CornerSquareType>('square');
   const [cornerDotStyle, setCornerDotStyle] = useState<CornerDotType>('square');
-  const [backgroundImage, setBackgroundImage] = useState<string>('');
-  const [backgroundImageOpacity, setBackgroundImageOpacity] = useState(50);
 
 
   // Function to get brand colors for social media logos
@@ -348,8 +346,6 @@ const QRGenerator = () => {
                 innerEye: innerEyeColor,
                 outerEye: outerEyeColor
               },
-              backgroundImage: backgroundImage || undefined,
-              backgroundImageOpacity: backgroundImageOpacity / 100,
               errorCorrectionLevel,
               design: selectedLogo !== 'none' ? {
                 logo: selectedLogo === 'custom-logo' && customLogo ? customLogo : 
@@ -416,7 +412,7 @@ const QRGenerator = () => {
     // Add a small delay to avoid too frequent regeneration
     const timeoutId = setTimeout(autoGenerateQR, 300);
     return () => clearTimeout(timeoutId);
-  }, [qrData, emailSubject, emailBody, smsMessage, whatsappMessage, wifiSSID, wifiPassword, wifiSecurity, vcardName, vcardPhone, vcardEmail, vcardOrg, eventTitle, eventLocation, eventStart, eventEnd, imageData, customLogo, customEmoji, paypalEmail, paypalPaymentType, paypalItemName, paypalItemId, paypalPrice, paypalCurrency, paypalShipping, paypalTaxRate, enhancedVcardVersion, enhancedVcardTitle, enhancedVcardFirstName, enhancedVcardLastName, enhancedVcardPhoneHome, enhancedVcardPhoneMobile, enhancedVcardPhoneOffice, enhancedVcardFax, enhancedVcardEmail, enhancedVcardWebsite, enhancedVcardCompany, enhancedVcardJobTitle, enhancedVcardAddress, enhancedVcardCity, enhancedVcardState, enhancedVcardPostalCode, enhancedVcardCountry, zoomMeetingId, zoomPassword, selectedLogo, logoSize, logoOpacity, gradient, removeBackground, downloadSize, margin, squareColor, backgroundColor, innerEyeColor, outerEyeColor, errorCorrectionLevel, contentType, useEnhancedMode, dotStyle, cornerSquareStyle, cornerDotStyle, backgroundImage, backgroundImageOpacity]);
+  }, [qrData, emailSubject, emailBody, smsMessage, whatsappMessage, wifiSSID, wifiPassword, wifiSecurity, vcardName, vcardPhone, vcardEmail, vcardOrg, eventTitle, eventLocation, eventStart, eventEnd, imageData, customLogo, customEmoji, paypalEmail, paypalPaymentType, paypalItemName, paypalItemId, paypalPrice, paypalCurrency, paypalShipping, paypalTaxRate, enhancedVcardVersion, enhancedVcardTitle, enhancedVcardFirstName, enhancedVcardLastName, enhancedVcardPhoneHome, enhancedVcardPhoneMobile, enhancedVcardPhoneOffice, enhancedVcardFax, enhancedVcardEmail, enhancedVcardWebsite, enhancedVcardCompany, enhancedVcardJobTitle, enhancedVcardAddress, enhancedVcardCity, enhancedVcardState, enhancedVcardPostalCode, enhancedVcardCountry, zoomMeetingId, zoomPassword, selectedLogo, logoSize, logoOpacity, gradient, removeBackground, downloadSize, margin, squareColor, backgroundColor, innerEyeColor, outerEyeColor, errorCorrectionLevel, contentType, useEnhancedMode, dotStyle, cornerSquareStyle, cornerDotStyle]);
 
   // Emoji validation function
   const validateEmoji = (text: string): boolean => {
@@ -1860,13 +1856,6 @@ const QRGenerator = () => {
                                 </Select>
                               </div>
 
-                              {/* Background Image Upload - Coming Soon */}
-                              <div className="space-y-2 opacity-50 pointer-events-none">
-                                <Label className="text-slate-700 font-medium">Background Image (Coming Soon)</Label>
-                                <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                                  <p className="text-sm text-gray-500">Background image blending feature will be added in a future update using Awesome-QR library</p>
-                                </div>
-                              </div>
                             </div>
                           )}
                         </div>
