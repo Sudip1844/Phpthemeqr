@@ -282,7 +282,7 @@ const QRGenerator = () => {
   // Reset QR result when design options change
   useEffect(() => {
     setQrResult(null);
-  }, [selectedLogo, logoSize, logoOpacity, gradient, removeBackground, downloadSize, margin, squareColor, backgroundColor, innerEyeColor, outerEyeColor, errorCorrectionLevel, customLogo, customEmoji, useEnhancedMode, dotStyle, cornerSquareStyle, cornerDotStyle, backgroundImage, backgroundImageOpacity]);
+  }, [selectedLogo, logoSize, logoOpacity, gradient, removeBackground, downloadSize, margin, squareColor, backgroundColor, innerEyeColor, outerEyeColor, errorCorrectionLevel, customLogo, customEmoji]);
 
   // Auto-generation: automatically generate QR code when valid input data changes
   useEffect(() => {
