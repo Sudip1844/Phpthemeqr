@@ -105,19 +105,15 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
           return;
         }
 
-        if (data instanceof Blob) {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            resolve(reader.result as string);
-          };
-          reader.onerror = () => {
-            reject(new Error('Failed to read QR code data'));
-          };
-          reader.readAsDataURL(data);
-        } else {
-          const base64 = Buffer.from(data).toString('base64');
-          resolve(`data:image/png;base64,${base64}`);
-        }
+        const blob = data instanceof Blob ? data : new Blob([data], { type: 'image/png' });
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          resolve(reader.result as string);
+        };
+        reader.onerror = () => {
+          reject(new Error('Failed to read QR code data'));
+        };
+        reader.readAsDataURL(blob);
       }).catch(error => {
         reject(error);
       });
