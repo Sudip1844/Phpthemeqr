@@ -16,7 +16,13 @@ const brandIconMap: Record<string, string> = {
   'zoom': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI0IiByeT0iNCIgZmlsbD0iIzI5ODJmZiIvPgogIDxyZWN0IHg9IjUiIHk9IjgiIHdpZHRoPSIxMCIgaGVpZ2h0PSI3IiByeD0iMiIgcnk9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHBvbHlnb24gcG9pbnRzPSIxNSwxMCAyMCw3IDIwLDE3IDE1LDE0IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K',
   'wifi': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8IS0tIE91dGVybW9zdCBXaUZpIHNpZ25hbCBhcmMgLS0+CiAgPHBhdGggZD0iTTIgOC41YzUuNS01LjUgMTQuNS01LjUgMjAgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjBBNUZBIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gTWlkZGxlIFdpRmkgc2lnbmFsIGFyYyAtLT4KICA8cGF0aCBkPSJNNSAxMS41YzQtNCAxMC00IDE0IDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzYwQTVGQSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIElubmVyIFdpRmkgc2lnbmFsIGFyYyAtLT4KICA8cGF0aCBkPSJNOC41IDE1YzIuNS0yLjUgNC41LTIuNSA3IDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzYwQTVGQSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFdpRmkgc2lnbmFsIGRvdCAtLT4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjE5IiByPSIyIiBmaWxsPSIjNjBBNUZBIi8+Cjwvc3ZnPgo=',
   'whatsapp': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI1IiByeT0iNSIgZmlsbD0iIzI1RDM2NiIvPjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xMiAzLjVjLTQuNjkgMC04LjUgMy44MS04LjUgOC41IDAgMS40OC4zOCAyLjg3IDEuMDYgNC4wOGwtMS4xIDQuMDQgNC4xNS0xLjA5YzEuMTcuNjQgMi41MSAxLjAxIDMuOTQgMS4wMSA0LjY5IDAgOC41LTMuODEgOC41LTguNVMxNi42OSAzLjUgMTIgMy41eiIvPjxwYXRoIGZpbGw9IiMyNUQzNjYiIGQ9Ik0xNi43NSAxNC40M2MtLjI3LS4xNS0xLjU4LS43OC0xLjgzLS44Ny0uMjQtLjA5LS40Mi0uMTMtLjU5LjEzLS4xOC4yNy0uNjguODctLjgzIDEuMDUtLjE2LjE4LS4zMS4yLS41OC4wNy0uMjctLjEzLTEuMTMtLjQyLTIuMTYtMS4zMy0uOC0uNzEtMS4zNC0xLjU5LTEuNS0xLjg2LS4xNi0uMjctLjAyLS40MS4xMi0uNTQuMTItLjEyLjI3LS4zMS40LS40Ny4xNC0uMTYuMTktLjI3LjI4LS40NS4wOS0uMTguMDUtLjM0LS4wMi0uNDctLjA3LS4xMy0uNTktMS40Mi0uODEtMS45NS0uMjEtLjUxLS40My0uNDQtLjU5LS40NS0uMTUgMC0uMzMtLjAxLS41MS0uMDEtLjE4IDAtLjQ3LjA3LS43Mi4zNC0uMjUuMjctLjk1LjkzLS45NSAyLjI3cy45NyAyLjYzIDEuMTEgMi44MWMuMTMuMTggMS44OCAyLjg3IDQuNTYgNC4wMiAyLjY3IDEuMTUgMi42Ny43NyAzLjE1LjcyLjQ4LS4wNSAxLjU4LS42NSAxLjgtMS4yNy4yMi0uNjIuMjItMS4xNi4xNi0xLjI3LS4wNy0uMTEtLjI1LS4xOC0uNTItLjMxeiIvPjwvc3ZnPg==',
-  'download': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzFFODhFNSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyLDEyKSBzY2FsZSgxLjIpIHRyYW5zbGF0ZSgtMTIsLTEyKSI+CiAgICA8cmVjdCB4PSIxMSIgeT0iNyIgd2lkdGg9IjIiIGhlaWdodD0iNiIgZmlsbD0id2hpdGUiLz4KICAgIDxwYXRoIGQ9Ik04IDEzIEwxMiAxNyBMMTYgMTMgWiIgZmlsbD0id2hpdGUiLz4KICA8L2c+CiAgPHJlY3QgeD0iNyIgeT0iMTciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxLjUiIHJ4PSIwLjc1IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4='
+  'download': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzFFODhFNSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyLDEyKSBzY2FsZSgxLjIpIHRyYW5zbGF0ZSgtMTIsLTEyKSI+CiAgICA8cmVjdCB4PSIxMSIgeT0iNyIgd2lkdGg9IjIiIGhlaWdodD0iNiIgZmlsbD0id2hpdGUiLz4KICAgIDxwYXRoIGQ9Ik04IDEzIEwxMiAxNyBMMTYgMTMgWiIgZmlsbD0id2hpdGUiLz4KICA8L2c+CiAgPHJlY3QgeD0iNyIgeT0iMTciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxLjUiIHJ4PSIwLjc1IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=',
+  'link': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzNCODJGNiIvPjx0ZXh0IHg9IjEyIiB5PSIxNyIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+UlzwvdGV4dD48L3N2Zz4=',
+  'location': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iI0VGNDQ0NCIvPjx0ZXh0IHg9IjEyIiB5PSIxNyIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+TjTwvdGV4dD48L3N2Zz4=',
+  'email': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzZCNzI4MCIvPjx0ZXh0IHg9IjEyIiB5PSIxNyIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4pyJfe+4jzwvdGV4dD48L3N2Zz4=',
+  'phone': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzEwQjk4MSIvPjx0ZXh0IHg9IjEyIiB5PSIxNyIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+Tljwvdgv4dD48L3N2Zz4=',
+  'vcard': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iI0Y1OUUwQiIvPjx0ZXh0IHg9IjEyIiB5PSIxNyIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+RpDwvdGV4dD48L3N2Zz4=',
+  'enhanced-vcard': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iI0E4NTVGNyIvPjx0ZXh0IHg9IjEyIiB5PSIxNyIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+qqjwvdGV4dD48L3N2Zz4='
 };
 
 const brandColorMap: Record<string, string> = {
@@ -97,11 +103,11 @@ export const generateQRCode = async (options: QROptions): Promise<string> => {
         height: size,
         type: 'canvas',
         data: data.trim(),
-        margin: margin,
         qrOptions: {
           typeNumber: 0,
           mode: 'Byte',
-          errorCorrectionLevel: hasValidLogo ? 'H' : errorCorrectionLevel
+          errorCorrectionLevel: hasValidLogo ? 'H' : errorCorrectionLevel,
+          margin: margin
         },
         dotsOptions: {
           color: color.dark,
@@ -193,11 +199,11 @@ export const generateQRCodeSVG = async (options: QROptions): Promise<string> => 
         height: size,
         type: 'svg',
         data: data.trim(),
-        margin: margin,
         qrOptions: {
           typeNumber: 0,
           mode: 'Byte',
-          errorCorrectionLevel: hasValidLogo ? 'H' : errorCorrectionLevel
+          errorCorrectionLevel: hasValidLogo ? 'H' : errorCorrectionLevel,
+          margin: margin
         },
         dotsOptions: {
           color: color.dark,
