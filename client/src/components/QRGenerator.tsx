@@ -349,6 +349,7 @@ const QRGenerator = () => {
                     selectedLogo,
               logoSize,
               logoOpacity,
+              removeLogoBackground: removeBackground,
             } : undefined
           };
           const qrDataUrl = await generateQRCode(options);
@@ -615,8 +616,7 @@ const QRGenerator = () => {
                 selectedLogo !== 'none' ? selectedLogo : undefined,
           logoSize,
           logoOpacity,
-          gradient,
-          removeBackground,
+          removeLogoBackground: removeBackground,
         }
       };
 
@@ -672,13 +672,12 @@ const QRGenerator = () => {
       },
       errorCorrectionLevel: errorCorrectionLevel,
       design: {
-        gradient: gradient,
         logo: selectedLogo === 'custom-logo' && customLogo ? customLogo : 
               selectedLogo === 'custom-emoji' && customEmoji ? customEmoji : 
               selectedLogo !== 'none' ? selectedLogo : undefined,
         logoSize: logoSize,
-        logoOpacity: logoOpacity, // Keep consistent scale
-        removeBackground: removeBackground
+        logoOpacity: logoOpacity,
+        removeLogoBackground: removeBackground
       }
     };
   };

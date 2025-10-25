@@ -123,16 +123,14 @@ export const generateQRCode = async (options: QROptions): Promise<string> => {
       if (hasValidLogo) {
         qrCodeOptions.image = logoUrl;
         qrCodeOptions.imageOptions = {
-          hideBackgroundDots: design?.removeBackground !== false,
-          imageSize: (design.logoSize || 20) / 100,
+          hideBackgroundDots: design?.removeLogoBackground !== false,
+          imageSize: (design?.logoSize || 20) / 100,
           margin: 5,
           crossOrigin: 'anonymous',
         };
         
         if (design?.logoOpacity !== undefined && design.logoOpacity < 100) {
-          qrCodeOptions.imageOptions.imageOptions = {
-            opacity: design.logoOpacity / 100
-          };
+          qrCodeOptions.imageOptions.opacity = design.logoOpacity / 100;
         }
       }
 
@@ -221,16 +219,14 @@ export const generateQRCodeSVG = async (options: QROptions): Promise<string> => 
       if (hasValidLogo) {
         qrCodeOptions.image = logoUrl;
         qrCodeOptions.imageOptions = {
-          hideBackgroundDots: design?.removeBackground !== false,
-          imageSize: (design.logoSize || 20) / 100,
+          hideBackgroundDots: design?.removeLogoBackground !== false,
+          imageSize: (design?.logoSize || 20) / 100,
           margin: 5,
           crossOrigin: 'anonymous',
         };
         
         if (design?.logoOpacity !== undefined && design.logoOpacity < 100) {
-          qrCodeOptions.imageOptions.imageOptions = {
-            opacity: design.logoOpacity / 100
-          };
+          qrCodeOptions.imageOptions.opacity = design.logoOpacity / 100;
         }
       }
 
