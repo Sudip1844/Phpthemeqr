@@ -64,7 +64,9 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
         return;
       }
 
-      const qrCode = new QRCodeStyling({
+      const hasValidLogo = design?.logo && design.logo !== 'none' && isValidImageUrl(design.logo);
+      
+      const qrCodeOptions: any = {
         width: size,
         height: size,
         type: 'canvas',
@@ -75,12 +77,6 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
           mode: 'Byte',
           errorCorrectionLevel: errorCorrectionLevel
         },
-        imageOptions: design?.logo && design.logo !== 'none' && isValidImageUrl(design.logo) ? {
-          hideBackgroundDots: true,
-          imageSize: (design.logoSize || 20) / 100,
-          margin: 5,
-          crossOrigin: 'anonymous',
-        } : undefined,
         dotsOptions: {
           color: color.dark,
           type: dotsType
@@ -88,7 +84,6 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
         backgroundOptions: {
           color: color.light,
         },
-        image: design?.logo && design.logo !== 'none' && isValidImageUrl(design.logo) ? design.logo : undefined,
         cornersSquareOptions: {
           color: color.outerEye || color.dark,
           type: cornerSquareType
@@ -97,11 +92,24 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
           color: color.innerEye || color.dark,
           type: cornerDotType
         }
-      });
+      };
+
+      if (hasValidLogo) {
+        qrCodeOptions.image = design.logo;
+        qrCodeOptions.imageOptions = {
+          hideBackgroundDots: true,
+          imageSize: (design.logoSize || 20) / 100,
+          margin: 5,
+          crossOrigin: 'anonymous',
+        };
+      }
+
+      const qrCode = new QRCodeStyling(qrCodeOptions);
 
       qrCode.getRawData('png').then(data => {
         if (!data) {
-          reject(new Error('Failed to generate QR code'));
+          console.error('QR Code getRawData returned null/undefined');
+          reject(new Error('Failed to generate QR code: getRawData returned null'));
           return;
         }
 
@@ -110,15 +118,18 @@ export const generateEnhancedQRCode = async (options: EnhancedQROptions): Promis
         reader.onloadend = () => {
           resolve(reader.result as string);
         };
-        reader.onerror = () => {
+        reader.onerror = (error) => {
+          console.error('FileReader error:', error);
           reject(new Error('Failed to read QR code data'));
         };
         reader.readAsDataURL(blob);
       }).catch(error => {
+        console.error('Enhanced QR generation error:', error);
         reject(error);
       });
 
     } catch (error) {
+      console.error('Enhanced QR Code creation error:', error);
       reject(error);
     }
   });

@@ -400,6 +400,8 @@ const QRGenerator = () => {
           // Only handle error if this is still the latest request
           if (currentToken === generationTokenRef.current) {
             console.error('Error auto-generating QR:', error);
+            console.error('Error message:', error instanceof Error ? error.message : String(error));
+            console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
             setQrResult(null);
             setIsGenerating(false);
           }
