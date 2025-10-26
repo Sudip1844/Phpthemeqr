@@ -984,46 +984,46 @@ const QRGenerator = () => {
   };
 
   return (
-    <div className="w-full max-w-none sm:max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div className="text-center mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-1 dynamic-neon-title">QR Code Generator</h1>
-        <p className="text-muted-foreground text-sm sm:text-base">Create customized QR codes for various content types</p>
+    <div className="w-full max-w-4xl mx-auto p-2">
+      <div className="text-center mb-4">
+        <h1 className="text-2xl font-bold mb-1 dynamic-neon-title">QR Code Generator</h1>
+        <p className="text-muted-foreground text-sm">Create customized QR codes for various content types</p>
       </div>
       
       <Card className="w-full">
-        <CardContent className="p-5 sm:p-6">
-          <div className="space-y-5 sm:space-y-6">
+        <CardContent className="p-4">
+          <div className="space-y-4">
             {/* QR Preview Section - Optimized */}
             {qrResult ? (
-              <div className="bg-gray-50 rounded-lg p-4 sm:p-3 border border-gray-100 relative flex justify-center">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-100 relative flex justify-center">
                 <img 
                   src={qrResult} 
                   alt="Generated QR Code" 
-                  className="max-w-[85vw] sm:max-w-full max-h-80 w-auto h-auto"
+                  className="max-w-full max-h-80 w-auto h-auto"
                   style={{ maxWidth: '320px', maxHeight: '320px' }}
                 />
               </div>
             ) : (
-              <div className="w-full max-w-[85vw] sm:w-64 h-64 bg-gray-50 rounded-lg border border-gray-100 flex flex-col items-center justify-center mx-auto">
+              <div className="w-64 h-64 bg-gray-50 rounded-lg border border-gray-100 flex flex-col items-center justify-center mx-auto">
                 <QrCode className="h-20 w-20 text-gray-300 mb-3" />
                 <p className="text-sm text-gray-500 text-center">QR Code will appear here</p>
               </div>
             )}
             
             {/* Configuration Section */}
-            <div className="space-y-4 sm:space-y-3">
+            <div className="space-y-3">
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="flex flex-col gap-2 sm:grid sm:w-full sm:grid-cols-2 mb-4 sm:mb-4 bg-gray-100 rounded-lg p-2 sm:p-1 w-full">
+                <TabsList className="grid w-full grid-cols-2 mb-4 bg-gray-100 rounded-lg p-1">
                   <TabsTrigger 
                     value="content" 
-                    className="rounded-md data-[state=active]:bg-emerald-500 data-[state=active]:text-white data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600 w-full py-3 sm:py-2"
+                    className="rounded-md data-[state=active]:bg-emerald-500 data-[state=active]:text-white data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600"
                   >
                     <span className="inline-flex items-center justify-center w-5 h-5 bg-emerald-500 text-white rounded-full text-xs font-bold mr-1">1</span>
                     Content
                   </TabsTrigger>
                   <TabsTrigger 
                     value="design" 
-                    className="rounded-md data-[state=active]:bg-emerald-500 data-[state=active]:text-white data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600 w-full py-3 sm:py-2"
+                    className="rounded-md data-[state=active]:bg-emerald-500 data-[state=active]:text-white data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600"
                   >
                     <span className="inline-flex items-center justify-center w-5 h-5 bg-gray-400 text-white rounded-full text-xs font-bold mr-1">2</span>
                     Design
@@ -2191,10 +2191,10 @@ const QRGenerator = () => {
               </Tabs>
               
               {/* Combined Action Buttons */}
-              <div className="mt-4 sm:mt-4">
+              <div className="mt-4">
                 {isGenerating ? (
                   <Button 
-                    className="w-full h-12 sm:h-12 text-base font-medium bg-gray-400 text-white" 
+                    className="w-full h-12 text-base font-medium bg-gray-400 text-white" 
                     size="lg" 
                     disabled={true}
                   >
@@ -2202,10 +2202,10 @@ const QRGenerator = () => {
                     Generating QR Code...
                   </Button>
                 ) : qrResult ? (
-                  <div className="flex gap-3 sm:gap-2 w-full">
+                  <div className="flex gap-2 w-full">
                     {/* Download Button - Main Action */}
                     <Button 
-                      className="flex-1 h-12 sm:h-12 text-base font-medium bg-emerald-600 hover:bg-emerald-700 text-white" 
+                      className="flex-1 h-12 text-base font-medium bg-emerald-600 hover:bg-emerald-700 text-white" 
                       size="lg" 
                       onClick={downloadQR}
                       data-testid="button-download-qr"
@@ -2217,7 +2217,7 @@ const QRGenerator = () => {
                     {/* Copy Button - Compact */}
                     <Button 
                       variant="outline" 
-                      className="w-14 sm:w-12 h-12 sm:h-12 p-0 border-gray-300 hover:bg-gray-100" 
+                      className="w-12 h-12 p-0 border-gray-300 hover:bg-gray-100" 
                       onClick={copyQR}
                       title="Copy QR Code"
                       data-testid="button-copy-qr"
@@ -2228,7 +2228,7 @@ const QRGenerator = () => {
                     {/* Share Button - Compact */}
                     <Button 
                       variant="outline" 
-                      className="w-14 sm:w-12 h-12 sm:h-12 p-0 border-gray-300 hover:bg-gray-100" 
+                      className="w-12 h-12 p-0 border-gray-300 hover:bg-gray-100" 
                       onClick={shareQR}
                       title="Share QR Code"
                       data-testid="button-share-qr"
@@ -2237,10 +2237,10 @@ const QRGenerator = () => {
                     </Button>
                   </div>
                 ) : (
-                  <div className="flex gap-3 sm:gap-2 w-full">
+                  <div className="flex gap-2 w-full">
                     {/* Disabled Download Button - Shows preview */}
                     <Button 
-                      className="flex-1 h-12 sm:h-12 text-base font-medium bg-gray-200 text-gray-500 cursor-not-allowed" 
+                      className="flex-1 h-12 text-base font-medium bg-gray-200 text-gray-500 cursor-not-allowed" 
                       size="lg" 
                       disabled={true}
                       data-testid="button-download-qr-disabled"
@@ -2252,7 +2252,7 @@ const QRGenerator = () => {
                     {/* Disabled Copy Button */}
                     <Button 
                       variant="outline" 
-                      className="w-14 sm:w-12 h-12 sm:h-12 p-0 border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed" 
+                      className="w-12 h-12 p-0 border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed" 
                       disabled={true}
                       title="Copy QR Code (Enter data first)"
                       data-testid="button-copy-qr-disabled"
@@ -2263,7 +2263,7 @@ const QRGenerator = () => {
                     {/* Disabled Share Button */}
                     <Button 
                       variant="outline" 
-                      className="w-14 sm:w-12 h-12 sm:h-12 p-0 border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed" 
+                      className="w-12 h-12 p-0 border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed" 
                       disabled={true}
                       title="Share QR Code (Enter data first)"
                       data-testid="button-share-qr-disabled"
