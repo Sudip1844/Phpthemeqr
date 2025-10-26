@@ -984,14 +984,14 @@ const QRGenerator = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-2">
+    <div className="w-full max-w-full sm:max-w-4xl lg:max-w-5xl mx-auto px-1 sm:px-2">
       <div className="text-center mb-4">
         <h1 className="text-2xl font-bold mb-1 dynamic-neon-title">QR Code Generator</h1>
         <p className="text-muted-foreground text-sm">Create customized QR codes for various content types</p>
       </div>
       
       <Card className="w-full">
-        <CardContent className="p-4">
+        <CardContent className="px-3 py-4 sm:px-4">
           <div className="space-y-4">
             {/* QR Preview Section - Optimized */}
             {qrResult ? (

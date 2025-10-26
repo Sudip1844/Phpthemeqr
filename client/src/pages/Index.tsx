@@ -459,7 +459,7 @@ const Index = ({ qrType }: IndexProps) => {
       </section>
       
       <main id="main-content" role="main" className="w-full py-8">
-        <div ref={qrGeneratorRef} className="px-4">
+        <div ref={qrGeneratorRef} className="px-2 sm:px-6">
           <QRGenerator />
         </div>
         
