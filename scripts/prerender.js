@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 import { seoConfigs, defaultSEO } from '../shared/seo-data.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -132,6 +133,142 @@ function generateJSONLD(config) {
   ).join('\n');
 }
 
+function generatePageContent(config) {
+  // Generate full page content with all sections
+  const h1Text = config.headings?.h1 || "Create Professional QR Codes in Seconds";
+  const h2List = config.headings?.h2 || [];
+  
+  return `
+      <div class="min-h-screen bg-slate-50">
+        <header role="banner" class="py-4 dynamic-header-bg z-20 relative shadow-sm" style="background: linear-gradient(135deg, rgba(16,185,129,0.05) 0%, rgba(59,130,246,0.05) 100%);">
+          <div class="w-full px-4">
+            <div class="flex items-center justify-between">
+              <h1 class="text-2xl font-bold flex items-center gap-2">
+                <div class="text-emerald-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+                </div>
+                <span class="text-slate-700">My Qrcode Tool</span>
+              </h1>
+            </div>
+          </div>
+        </header>
+
+        <section aria-label="Hero section" class="py-12 px-4 bg-gradient-to-br from-emerald-50 via-white to-blue-50">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+              <h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-6 leading-tight" style="font-size: clamp(2.25rem, 5vw, 3.75rem);">
+                ${h1Text}
+              </h1>
+              <p class="text-xl md:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Generate custom QR codes for your business, events, and personal use. Add logos, customize colors, choose frames, and track performance - all for free!
+              </p>
+              ${h2List.map(h2 => `<h2 class="sr-only">${h2}</h2>`).join('\n              ')}
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <div class="flex items-center gap-2 text-emerald-600">
+                <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span class="font-medium">Free Forever</span>
+              </div>
+              <div class="flex items-center gap-2 text-blue-600">
+                <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <span class="font-medium">No Registration Required</span>
+              </div>
+              <div class="flex items-center gap-2 text-purple-600">
+                <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                <span class="font-medium">Unlimited Downloads</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <main id="main-content" role="main" class="w-full py-8">
+          <div class="px-2 sm:px-6">
+            <div class="text-center py-12">
+              <p class="text-lg text-slate-600">QR Code generator loading...</p>
+            </div>
+          </div>
+          
+          <div class="mt-16 py-16 px-4 bg-white rounded-lg shadow-sm mx-4">
+            <div class="text-center mb-12">
+              <div class="inline-block px-6 py-2 bg-emerald-500 text-white rounded-full font-medium mb-6">
+                Features
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+                Powerful Features for Your QR Code Needs
+              </h2>
+              <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                Create, customize, and track your QR codes with our comprehensive suite of professional features
+              </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+              <div class="flex flex-col items-center">
+                <div class="text-emerald-500 mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+                </div>
+                <h3 class="font-medium text-lg text-slate-700">Multiple QR Types</h3>
+              </div>
+              
+              <div class="flex flex-col items-center">
+                <div class="text-emerald-500 mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                </div>
+                <h3 class="font-medium text-lg text-slate-700">High-Resolution Export</h3>
+              </div>
+              
+              <div class="flex flex-col items-center">
+                <div class="text-emerald-500 mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+                <h3 class="font-medium text-lg text-slate-700">Design Customization</h3>
+              </div>
+              
+              <div class="flex flex-col items-center">
+                <div class="text-emerald-500 mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                </div>
+                <h3 class="font-medium text-lg text-slate-700">Logo Integration</h3>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-16 py-16 px-4 bg-emerald-500 text-white rounded-lg mx-4">
+            <div class="max-w-3xl mx-auto">
+              <h2 class="text-xl font-medium mb-3">What are QR Codes?</h2>
+              <h3 class="text-4xl font-bold mb-6">QR stands for 'Quick Response'</h3>
+              
+              <p class="mb-6 text-lg opacity-90">
+                QR Codes were invented in 1994 by Denso Wave for tracking automotive parts during manufacturing. 
+                They gained massive popularity with the rise of smartphones, making it possible to scan codes 
+                directly with your phone's camera.
+              </p>
+              
+              <p class="mb-8 text-lg opacity-90">
+                Today, QR Codes have revolutionized how we share information instantly. Let me show you the key 
+                benefits and most popular QR Code applications that can transform your business.
+              </p>
+            </div>
+          </div>
+          
+          <div class="mt-16 py-16 px-4">
+            <div class="text-center mb-12">
+              <div class="inline-block px-6 py-2 bg-emerald-500 text-white rounded-full font-medium mb-6">
+                How to Use
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+                Creating QR Codes with My Qrcode Tool is Simple and Fast
+              </h2>
+              <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                Get started in minutes with our intuitive QR Code generator. Create unlimited dynamic and static QR Codes for any purpose.
+              </p>
+            </div>
+          </div>
+        </main>
+      </div>
+  `;
+}
+
 function cleanAndInjectMetaTags(html, config) {
   const canonicalUrl = `${SITE_URL}${config.route}`;
   const ogImageUrl = config.ogImage ? `${SITE_URL}${config.ogImage}` : `${SITE_URL}/og-image.png`;
@@ -168,35 +305,12 @@ function cleanAndInjectMetaTags(html, config) {
   processedHtml = processedHtml.replace(/<!--\s*Twitter Card Meta Tags\s*-->[\s\S]*?(?=\s*<!--\s*Additional SEO)/i, twitterMetaBlock + '\n    \n    ');
   processedHtml = processedHtml.replace(/<!--\s*Additional SEO\s*-->[\s\S]*?(?=\s*<!--\s*Performance)/i, additionalSeoBlock + '\n    \n    ');
   
-  // Inject H1 and H2 headings into the body for SEO crawlers
-  if (config.headings && config.headings.h1) {
-    const h1Text = config.headings.h1;
-    const h2List = config.headings.h2 || [];
-    
-    // Create SEO heading structure in the hero skeleton
-    const seoHeadingStructure = `<h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-6 leading-tight" style="font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 700; color: rgb(30 41 59); margin-bottom: 1.5rem; line-height: 1.25;">
-            ${h1Text}
-          </h1>`;
-    
-    // Replace the existing h1 in the hero skeleton
-    processedHtml = processedHtml.replace(
-      /<h1[^>]*>[\s\S]*?<\/h1>/i,
-      seoHeadingStructure
-    );
-    
-    // Add H2 headings structure as hidden content for SEO (will be replaced by React)
-    if (h2List.length > 0) {
-      const h2Structure = h2List.map(h2 => 
-        `<h2 class="sr-only">${h2}</h2>`
-      ).join('\n          ');
-      
-      // Insert H2s after the description paragraph in the hero section
-      processedHtml = processedHtml.replace(
-        /(<p[^>]*>[\s\S]*?<\/p>)/i,
-        `$1\n          ${h2Structure}`
-      );
-    }
-  }
+  // Replace the entire body content with our generated page content
+  const pageContent = generatePageContent(config);
+  processedHtml = processedHtml.replace(
+    /<div id="root">[\s\S]*?<\/div>/,
+    `<div id="root">${pageContent}</div>`
+  );
   
   return processedHtml;
 }
