@@ -134,12 +134,60 @@ function generateJSONLD(config) {
   ).join('\n');
 }
 
+/**
+ * Deep merge defaultSEO sections into config
+ * Only merges shared informational sections (aboutSection, howToUse, whyChoose, qrTypeCards)
+ * Preserves route-specific content and nested objects
+ */
+function mergeDefaultSections(config) {
+  // Create merged config
+  const mergedConfig = {
+    ...defaultSEO,
+    ...config,
+    // Deep merge nested objects
+    headings: {
+      ...defaultSEO.headings,
+      ...config.headings
+    }
+  };
+  
+  // Only merge shared sections if config doesn't have them (avoid overwriting specialized content)
+  if (!config.aboutSection && defaultSEO.aboutSection) {
+    mergedConfig.aboutSection = defaultSEO.aboutSection;
+  }
+  if (!config.howToUse && defaultSEO.howToUse) {
+    mergedConfig.howToUse = defaultSEO.howToUse;
+  }
+  if (!config.whyChoose && defaultSEO.whyChoose) {
+    mergedConfig.whyChoose = defaultSEO.whyChoose;
+  }
+  if (!config.qrTypeCards && defaultSEO.qrTypeCards) {
+    mergedConfig.qrTypeCards = defaultSEO.qrTypeCards;
+  }
+  
+  // Preserve route-specific uniqueContent if it exists
+  if (config.uniqueContent) {
+    mergedConfig.uniqueContent = {
+      ...defaultSEO.uniqueContent,
+      ...config.uniqueContent
+    };
+  }
+  
+  return mergedConfig;
+}
+
 function generatePageContent(config) {
   // Use specialized renderer if available, otherwise use default
   const qrType = config.qrType;
   const renderer = renderers[qrType] || renderDefault;
   
-  return renderer(config);
+  // Merge default sections ONLY for QR generator pages
+  // Skip for specialized pages (scanner, faq, privacy, support, download, notfound, etc.)
+  const specializedTypes = ['scanner', 'faq', 'privacy', 'support', 'download', 'notfound'];
+  const shouldMerge = !specializedTypes.includes(qrType) && renderer === renderDefault;
+  const finalConfig = shouldMerge ? mergeDefaultSections(config) : config;
+  
+  return renderer(finalConfig);
 }
 
 function cleanAndInjectMetaTags(html, config) {

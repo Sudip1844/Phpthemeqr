@@ -627,5 +627,94 @@ export const defaultSEO = {
       "Popular QR Code Types",
       "Get Started with QR Codes Today"
     ]
-  }
+  },
+  aboutSection: {
+    heading: "What are QR Codes?",
+    subheading: "QR stands for 'Quick Response'",
+    paragraphs: [
+      "QR Codes were invented in 1994 by Denso Wave for tracking automotive parts during manufacturing. They gained massive popularity with the rise of smartphones, making it possible to scan codes directly with your phone's camera.",
+      "Today, QR Codes have revolutionized how we share information instantly. Let me show you the key benefits and most popular QR Code applications that can transform your business."
+    ],
+    features: [
+      {
+        icon: "MessageCircle",
+        title: "Collect Customer Feedback",
+        description: "Enable instant feedback collection by directing customers to review forms or surveys when they scan your QR Code."
+      },
+      {
+        icon: "UserSquare",
+        title: "Digital Business Cards",
+        description: "Replace traditional paper business cards with smart digital profiles that can be instantly saved to contacts with a simple scan."
+      },
+      {
+        icon: "Briefcase",
+        title: "Business Information Hub",
+        description: "Direct customers to detailed business information, instructions, or service pages to enhance their experience with your brand."
+      },
+      {
+        icon: "Megaphone",
+        title: "Event Promotion & Offers",
+        description: "Promote special events, share exclusive discount codes, or announce limited-time offers through engaging QR Code campaigns."
+      }
+    ]
+  },
+  howToUse: {
+    heading: "Creating QR Codes with My Qrcode Tool is Simple and Fast",
+    description: "Get started in minutes with our intuitive QR Code generator. Create unlimited dynamic and static QR Codes for any purpose.",
+    steps: [
+      {
+        number: 1,
+        title: "Choose QR Code Type",
+        description: "Select from 13+ different QR Code types including URL, Email, WiFi, VCard, and more. Each type is optimized for specific use cases.",
+        icon: "MousePointer"
+      },
+      {
+        number: 2,
+        title: "Fill Required Information",
+        description: "Enter the specific information for your chosen QR Code type. For example, a URL QR Code requires a website link, while a WiFi QR Code needs network credentials.",
+        icon: "FileEdit"
+      },
+      {
+        number: 3,
+        title: "Download & Share",
+        description: "Generate your QR Code instantly, download it in high quality, and start sharing. You can always come back to edit or track its performance.",
+        icon: "Send"
+      }
+    ]
+  },
+  whyChoose: {
+    heading: "Why Choose My Qrcode Tool Generator?",
+    paragraphs: [
+      "My Qrcode Tool provides instant QR code generation with multiple content types including URLs, emails, phone numbers, WiFi credentials, and more. Generate professional QR codes in seconds with full customization options.",
+      "Perfect for businesses, marketing campaigns, events, and personal use. Create stunning QR codes with logos, custom colors, and download in high resolution - all completely free!"
+    ],
+    features: [
+      "13+ QR code types for any use case",
+      "High-resolution downloads (PNG, SVG, PDF)",
+      "Full color and design customization",
+      "Logo integration with any image",
+      "Instant generation and unlimited downloads",
+      "Free to use with no registration required"
+    ],
+    stats: [
+      { number: "13+", label: "QR Code Types" },
+      { number: "∞", label: "Unlimited Downloads" },
+      { number: "100%", label: "Free Forever" }
+    ]
+  },
+  qrTypeCards: [
+    { type: "url", name: "Website URL", description: "Direct users to any website or landing page", icon: "Link" },
+    { type: "email", name: "Email", description: "Pre-compose emails with subject and message", icon: "Mail" },
+    { type: "text", name: "Plain Text", description: "Share any text message or information", icon: "FileText" },
+    { type: "phone", name: "Phone Call", description: "Enable one-tap calling to your number", icon: "Phone" },
+    { type: "sms", name: "SMS Message", description: "Send pre-written text messages", icon: "MessageSquare" },
+    { type: "whatsapp", name: "WhatsApp", description: "Start WhatsApp conversations instantly", icon: "WhatsAppIcon" },
+    { type: "wifi", name: "WiFi Network", description: "Share WiFi credentials for easy connection", icon: "WifiIcon" },
+    { type: "contact", name: "Contact Card", description: "Save contact information to phone", icon: "UserSquare" },
+    { type: "event", name: "Calendar Event", description: "Add events directly to calendar apps", icon: "CalendarDays" },
+    { type: "image", name: "Image", description: "Embed images directly into QR codes", icon: "ImageIcon" },
+    { type: "paypal", name: "PayPal", description: "Accept payments instantly with PayPal", icon: "PayPalIcon" },
+    { type: "zoom", name: "Zoom", description: "Join Zoom meetings instantly with QR", icon: "ZoomIcon" },
+    { type: "vcard", name: "V-card", description: "Complete professional contact details", icon: "UserSquare" }
+  ]
 };

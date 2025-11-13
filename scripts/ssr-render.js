@@ -11,6 +11,10 @@ function renderDefault(config) {
   const h2List = config.headings?.h2 || [];
   const benefits = config.uniqueContent?.benefits || [];
   const useCases = config.uniqueContent?.useCases || '';
+  const aboutSection = config.aboutSection;
+  const howToUse = config.howToUse;
+  const whyChoose = config.whyChoose;
+  const qrTypeCards = config.qrTypeCards || [];
   
   return `
       <div class="min-h-screen bg-slate-50">
@@ -132,6 +136,127 @@ function renderDefault(config) {
               </div>
             </div>
           </div>
+          
+          ${aboutSection ? `
+          <div class="mt-16 py-16 px-4 bg-emerald-500 text-white rounded-lg mx-4">
+            <div class="max-w-3xl mx-auto">
+              <h2 class="text-xl font-medium mb-3">${aboutSection.heading}</h2>
+              <h3 class="text-4xl font-bold mb-6">${aboutSection.subheading}</h3>
+              
+              ${aboutSection.paragraphs.map(para => `<p class="mb-6 text-lg opacity-90">${para}</p>`).join('\n              ')}
+              
+              ${aboutSection.features && aboutSection.features.length > 0 ? `
+              <div class="grid md:grid-cols-2 gap-6 mt-12">
+                ${aboutSection.features.map(feature => `
+                <div class="bg-white rounded-lg p-8 text-center">
+                  <h4 class="text-slate-700 text-xl font-medium mb-4">${feature.title}</h4>
+                  <p class="text-slate-600">${feature.description}</p>
+                </div>
+                `).join('')}
+              </div>
+              ` : ''}
+            </div>
+          </div>
+          ` : ''}
+          
+          ${howToUse ? `
+          <div class="mt-16 py-16 px-4">
+            <div class="text-center mb-12">
+              <div class="inline-block px-6 py-2 bg-emerald-500 text-white rounded-full font-medium mb-6">
+                How to Use
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+                ${howToUse.heading}
+              </h2>
+              <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                ${howToUse.description}
+              </p>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+              ${howToUse.steps.map((step, index) => `
+              <div class="relative z-10 flex flex-col md:flex-row${index % 2 === 1 ? '-reverse' : ''} items-center mb-${index === howToUse.steps.length - 1 ? '0' : '24'}">
+                <div class="md:w-1/2 md:p${index % 2 === 0 ? 'r' : 'l'}-12 mb-8 md:mb-0 md:text-${index % 2 === 0 ? 'right' : 'left'}">
+                  <h3 class="text-2xl font-bold text-slate-800 mb-4">${step.number}. ${step.title}</h3>
+                  <p class="text-slate-600 text-lg">${step.description}</p>
+                </div>
+                <div class="relative">
+                  <div class="w-20 h-20 rounded-full bg-gradient-to-br from-${index === 0 ? 'emerald' : index === 1 ? 'blue' : 'purple'}-500 to-${index === 0 ? 'emerald' : index === 1 ? 'blue' : 'purple'}-600 border-4 border-white shadow-lg flex items-center justify-center">
+                    <span class="text-white text-2xl font-bold">${step.number}</span>
+                  </div>
+                </div>
+                <div class="md:w-1/2 md:p${index % 2 === 0 ? 'l' : 'r'}-12"></div>
+              </div>
+              `).join('')}
+            </div>
+          </div>
+          ` : ''}
+          
+          ${whyChoose ? `
+          <div class="mt-16 py-16 px-4 bg-white rounded-lg border shadow-sm mx-4">
+            <div class="max-w-3xl mx-auto">
+              <h2 class="text-3xl font-bold text-slate-800 mb-6">${whyChoose.heading}</h2>
+              
+              ${whyChoose.paragraphs.map(para => `<p class="mb-4 text-slate-600 text-lg">${para}</p>`).join('\n              ')}
+              
+              ${whyChoose.features && whyChoose.features.length > 0 ? `
+              <div class="grid md:grid-cols-2 gap-6 mt-8">
+                ${whyChoose.features.slice(0, Math.ceil(whyChoose.features.length / 2)).map(feature => `
+                <div class="space-y-4">
+                  <div class="flex items-center gap-3">
+                    <svg class="h-6 w-6 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span class="text-slate-700">${feature}</span>
+                  </div>
+                </div>
+                `).join('')}
+                <div class="space-y-4">
+                ${whyChoose.features.slice(Math.ceil(whyChoose.features.length / 2)).map(feature => `
+                  <div class="flex items-center gap-3">
+                    <svg class="h-6 w-6 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span class="text-slate-700">${feature}</span>
+                  </div>
+                `).join('')}
+                </div>
+              </div>
+              ` : ''}
+              
+              ${whyChoose.stats && whyChoose.stats.length > 0 ? `
+              <div class="mt-12 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl p-8">
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                  ${whyChoose.stats.map((stat, index) => `
+                  <div>
+                    <div class="text-3xl font-bold text-${index === 0 ? 'emerald' : index === 1 ? 'blue' : 'purple'}-600 mb-2">${stat.number}</div>
+                    <div class="text-slate-600">${stat.label}</div>
+                  </div>
+                  `).join('')}
+                </div>
+              </div>
+              ` : ''}
+            </div>
+          </div>
+          ` : ''}
+          
+          ${qrTypeCards && qrTypeCards.length > 0 ? `
+          <div class="mt-16 py-16 px-4 bg-white rounded-lg border shadow-sm mx-4">
+            <div class="max-w-3xl mx-auto">
+              <h2 class="text-3xl font-bold text-slate-800 text-center mb-4">QR Code Types</h2>
+              <p class="text-center text-slate-600 mb-12">Choose from our comprehensive collection of QR Code types for any business need.</p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                ${qrTypeCards.map(card => `
+                <div class="border rounded-lg p-6 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                  <h3 class="text-xl font-medium text-slate-800 mb-2">${card.name}</h3>
+                  <p class="text-slate-600 mb-4">${card.description}</p>
+                </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+          ` : ''}
         </main>
       </div>
   `;
