@@ -129,7 +129,27 @@
             </div>
             <span class="text-slate-700">My Qrcode Tool</span>
           </a>
-          <nav role="navigation" aria-label="Main navigation" class="flex items-center gap-3">
+          <nav role="navigation" aria-label="Main navigation" class="flex items-center gap-4">
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-6">
+              <a href="/" class="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors" data-testid="link-nav-generator">
+                QR Generator
+              </a>
+              <a href="/scanner" class="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors" data-testid="link-nav-scanner">
+                QR Scanner
+              </a>
+              <a href="/faq" class="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors" data-testid="link-nav-faq">
+                FAQ
+              </a>
+              <a href="/privacy" class="text-sm font-medium text-slate-700 hover:text-emerald-600 transition-colors" data-testid="link-nav-privacy">
+                Privacy
+              </a>
+              <a href="/download" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-blue-500 text-white rounded-lg hover:from-emerald-600 hover:to-blue-600 transition-colors text-sm font-medium" data-testid="link-nav-download">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Download App
+              </a>
+            </div>
+            <!-- Mobile Menu Button -->
             <button class="block md:hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md" aria-label="Open mobile menu" data-testid="button-mobile-menu">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
             </button>
