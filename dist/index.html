@@ -130,18 +130,25 @@
     <!-- End Google Tag Manager (noscript) -->
     <div id="root">
       <div class="min-h-screen bg-slate-50">
-        <header role="banner" class="py-4 dynamic-header-bg z-20 relative shadow-sm" style="background: linear-gradient(135deg, rgba(16,185,129,0.05) 0%, rgba(59,130,246,0.05) 100%);">
-          <div class="w-full px-4">
-            <div class="flex items-center justify-between">
-              <h1 class="text-2xl font-bold flex items-center gap-2">
-                <div class="text-emerald-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
-                </div>
-                <span class="text-slate-700">My Qrcode Tool</span>
-              </h1>
+        
+    <header role="banner" class="py-4 dynamic-header-bg z-20 relative shadow-sm" style="background: linear-gradient(135deg, rgba(16,185,129,0.05) 0%, rgba(59,130,246,0.05) 100%);">
+      <div class="w-full px-4">
+        <div class="flex items-center justify-between">
+          <a href="/" class="text-2xl font-bold flex items-center gap-2 cursor-pointer" aria-label="Go to homepage">
+            <div class="text-emerald-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
             </div>
-          </div>
-        </header>
+            <span class="text-slate-700">My Qrcode Tool</span>
+          </a>
+          <nav role="navigation" aria-label="Main navigation" class="flex items-center gap-3">
+            <button class="block md:hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md" aria-label="Open mobile menu" data-testid="button-mobile-menu">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </header>
+  
 
         <section aria-label="Hero section" class="py-12 px-4 bg-gradient-to-br from-emerald-50 via-white to-blue-50">
           <div class="max-w-4xl mx-auto text-center">
@@ -500,6 +507,121 @@
           </div>
           
         </main>
+        
+        
+    <footer role="contentinfo" class="bg-card border-t mt-auto">
+      <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="space-y-4">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6 text-primary"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+              <span class="text-xl font-bold">My Qrcode Tool</span>
+            </div>
+            <p class="text-sm text-muted-foreground">
+              Free QR code generator and scanner. Create professional QR codes for URLs, WiFi, contacts, events, and more. Fast, secure, and easy to use.
+            </p>
+            <div class="flex gap-2">
+              <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">Free Forever</span>
+              <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">No Registration</span>
+            </div>
+          </div>
+
+          <nav class="space-y-4" aria-label="Tools links">
+            <h3 class="font-semibold text-sm uppercase tracking-wider">Tools</h3>
+            <ul class="space-y-3" role="list">
+              <li>
+                <a href="/" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-generator">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+                  QR Generator
+                </a>
+              </li>
+              <li>
+                <a href="/scanner" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-scanner">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+                  QR Scanner
+                </a>
+              </li>
+              <li>
+                <a href="/download" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-download">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  Download App
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <nav class="space-y-4" aria-label="Support links">
+            <h3 class="font-semibold text-sm uppercase tracking-wider">Support</h3>
+            <ul class="space-y-3" role="list">
+              <li>
+                <a href="/faq" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-faq">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a href="/privacy" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-privacy">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="/support" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-support">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M12 8v4"/><path d="M12 16h.01"/><circle cx="12" cy="12" r="10"/></svg>
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <nav class="space-y-4" aria-label="Popular QR Types links">
+            <h3 class="font-semibold text-sm uppercase tracking-wider">Popular QR Types</h3>
+            <ul class="space-y-3" role="list">
+              <li>
+                <a href="/url-to-qr" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-qr-url">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  URL QR Code
+                </a>
+              </li>
+              <li>
+                <a href="/wifi-to-qr" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-qr-wifi">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></svg>
+                  WiFi QR Code
+                </a>
+              </li>
+              <li>
+                <a href="/email-to-qr" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-qr-email">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  Email QR Code
+                </a>
+              </li>
+              <li>
+                <a href="/phone-to-qr" class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2" data-testid="link-qr-phone">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  Phone QR Code
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="border-t my-8"></div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+          <p>© 2025 My Qrcode Tool. All rights reserved.</p>
+          <div class="flex gap-4">
+            <a href="/privacy" class="hover:text-primary transition-colors cursor-pointer" data-testid="link-privacy-bottom">Privacy</a>
+            <a href="/faq" class="hover:text-primary transition-colors cursor-pointer" data-testid="link-faq-bottom">FAQ</a>
+            <a href="/support" class="hover:text-primary transition-colors cursor-pointer" data-testid="link-support-bottom">Contact Us</a>
+          </div>
+        </div>
+
+        <div class="mt-6 text-center text-xs text-muted-foreground">
+          <p>QR Code Generator • QR Code Scanner • Free QR Codes • WiFi QR Generator • vCard QR Code • URL to QR • Text to QR</p>
+        </div>
+      </div>
+    </footer>
+  
       </div>
   </div>
   </body>
