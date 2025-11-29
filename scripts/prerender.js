@@ -15,9 +15,16 @@ if (!process.env.VITE_SITE_URL) {
   console.warn('   Set VITE_SITE_URL environment variable for correct canonical URLs on other domains.\n');
 }
 
+// Helper function to ensure trailing slash for non-root routes
+function normalizeRoute(route) {
+  if (route === '/') return '/';
+  return route.endsWith('/') ? route : `${route}/`;
+}
+
 function generateJSONLD(config) {
   const schemas = [];
-  const canonicalUrl = `${SITE_URL}${config.route}`;
+  const normalizedRoute = normalizeRoute(config.route);
+  const canonicalUrl = `${SITE_URL}${normalizedRoute}`;
   
   // Add BreadcrumbList schema if breadcrumb data exists
   if (config.breadcrumb && config.breadcrumb.length > 0) {
@@ -28,7 +35,7 @@ function generateJSONLD(config) {
         "@type": "ListItem",
         "position": index + 1,
         "name": item.name,
-        "item": item.url === "/" ? SITE_URL : `${SITE_URL}${item.url}`
+        "item": item.url === "/" ? SITE_URL + "/" : `${SITE_URL}${normalizeRoute(item.url)}`
       }))
     });
   }
@@ -191,7 +198,8 @@ function generatePageContent(config) {
 }
 
 function cleanAndInjectMetaTags(html, config) {
-  const canonicalUrl = `${SITE_URL}${config.route}`;
+  const normalizedRoute = normalizeRoute(config.route);
+  const canonicalUrl = `${SITE_URL}${normalizedRoute}`;
   const ogImageUrl = config.ogImage ? `${SITE_URL}${config.ogImage}` : `${SITE_URL}/og-image.png`;
   
   let processedHtml = html;

@@ -21,7 +21,9 @@ export interface SEOConfig {
 export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://myqrcodetool.com';
 
 export const getCanonicalURL = (route: string): string => {
-  return `${SITE_URL}${route}`;
+  // Ensure trailing slash for consistency with server-side routing
+  const normalizedRoute = route === '/' ? '/' : route.endsWith('/') ? route : `${route}/`;
+  return `${SITE_URL}${normalizedRoute}`;
 };
 
 import { seoConfigs as importedSeoConfigs, defaultSEO } from '../../../shared/seo-data.js';
